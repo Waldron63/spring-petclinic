@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.4.xsd"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.4.xsd https://dependency-check.github.io/DependencyCheck/dependency-suppression.1.4.xsd">
+
+    <suppress>
+        <notes><![CDATA[
+        False positive: CVE-2022-31691 affects Spring Tools IDE
+        and Spring Boot Tools VS Code extensions, not the
+        spring-boot-devtools Maven dependency.
+        Official advisory:
+        https://spring.io/security/cve-2022-31691/
+        ]]></notes>
+        <gav regex="false">org.springframework.boot:spring-boot-devtools:4.1.2</gav>
+        <cve>CVE-2022-31691</cve>
+    </suppress>
+
+</suppressions>

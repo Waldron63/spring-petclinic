@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>4.1.0</version>
+    <version>4.1.2</version>
   </parent>
 
   <groupId>org.springframework.samples</groupId>
@@ -88,14 +88,16 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>com.mysql</groupId>
-      <artifactId>mysql-connector-j</artifactId>
-      <scope>runtime</scope>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>26.10.0</version>
+        <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <scope>runtime</scope>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.7.14</version>
+        <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.webjars</groupId>
@@ -191,6 +193,24 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>13.0.0</version>
+        <configuration>
+          <nvdApiKeyEnvironmentVariable>NVD_API_KEY</nvdApiKeyEnvironmentVariable>
+          <dataDirectory>${user.home}/.dependency-check-data</dataDirectory>
+          <formats>
+            <format>HTML</format>
+            <format>SARIF</format>
+          </formats>
+          <failBuildOnCVSS>7</failBuildOnCVSS>
+          <ossIndexAnalyzerEnabled>false</ossIndexAnalyzerEnabled>
+          <suppressionFiles>
+            <suppressionFile>${project.basedir}/dependency-check-suppression.xml</suppressionFile>
+          </suppressionFiles>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
